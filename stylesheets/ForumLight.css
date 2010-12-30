@@ -1,0 +1,91 @@
+body
+{
+	background-color: #F5FAFF;
+}
+
+a
+{
+	color: black;
+}
+
+.forumpageheader
+{
+	color: black;
+	background-color: #E5EAFF;
+}
+
+.forumpageheaderLink
+{
+	background-color: #E5EAFF;
+	color: black;
+}
+
+.forumlist
+{
+	color: black;
+	background-color: #E5EAFF;
+}
+
+.forumlistoptioncontainer
+{
+	color: black;
+	background-color: white;
+	border-color: black;
+}
+
+.forumlistoption
+{
+	background-color: white;
+	color: black;
+}
+
+.forum
+{
+	background-color: #FFFFFF;
+	border-color: black;
+}
+
+.forumthread
+{
+	background-color: #FFFFFF;
+	border-color: black;
+}
+
+.forumavatar
+{
+	border-color: black;
+}
+
+.forumposthead
+{
+	border-color: black;
+}
+
+.forumpost
+{
+	background-color: #FFFFFF;
+	border-color: black;
+}
+
+.forumtitle
+{
+	background-color: #E5EAFF;
+	border-color: black;
+}
+
+.forumdescription
+{
+	background-color: #E5EAFF;
+	color: black;
+}
+
+.forumprofile
+{
+	color: black;
+	background-color: #E5EAFF;
+}
+
+.forumquote
+{
+	background-color: #E5EAFF;
+}

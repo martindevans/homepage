@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>Administration panel</title>
+		<link rel="stylesheet" type="text/css" href="../../stylesheets/main.css" />
+		<link rel="stylesheet" type="text/css" href="../../stylesheets/redirect.css" />
+	</head>
+	<body>
+		<div class="pagetitle">Administration page</div>
+		<div class="headercomment">Welcome to the admin page</div>
+		<div class="headercomment">If you're not meant to be here, go away!</div>
+		
+		<div class="redirectservice">
+			<div class="redirecttitle"><a href="/">Homepage</a></div>
+			<div class="redirectdescription">Back to the homepage</div>
+		</div>
+		
+		<div class="redirectservice">
+			<div class="redirecttitle"><a href="/admin/blogpost">Post on blog</a></div>
+			<div class="redirectdescription">Make a new entry on the blog</div>
+		</div>
+		
+		<div class="redirectservice">
+			<div class="redirecttitle"><a href="/admin/createforum">Create a new forum</a></div>
+			<div class="redirectdescription">Create a new forum on the messageboard</div>
+		</div>
+		
+		<div class="redirectservice">
+			<div class="redirecttitle">Create a new Authorisation Group</a></div>
+			<div class="redirectdescription">
+				<form action="/messageboard/creategroup" method="post">
+					<div><label>Name:</label></div>
+					<div><textarea name="groupname" rows="1" cols="60"></textarea></div>
+					<div><label>Description:</label></div>
+					<div><textarea name="groupdescription" rows="1" cols="60"></textarea></div>
+					<div><input type="submit" value="Create"></div>
+				</form>
+			</div>
+		</div>
+		
+		<div class="redirectservice">
+			<div class="redirecttitle"><a href="/admin/renderauthapproval">Approve Applications</a></div>
+			<div class="redirectdescription">Approve applications by users to join authorisation groups</div>
+		</div>
+		
+		<div class="redirectservice">
+			<div class="redirecttitle"><a href="/admin/flushmemcache">Flush the memcache</a></div>
+			<div class="redirectdescription">Delete all memcached data</div>
+		</div>
+		<div class="redirectservice">
+			<div class="redirectdescription">Memcache hits: {{ hits }}</div>
+			<div class="redirectdescription">Memcache misses: {{ misses }}</div>
+			<div class="redirectdescription">Memcache byte_hits: {{ byte_hits|filesizeformat }}</div>
+			<div class="redirectdescription">Memcache items: {{ items }}</div>
+			<div class="redirectdescription">Memcache bytes: {{ bytes|filesizeformat }}</div>
+			<div class="redirectdescription">Memcache oldest_item_age: {{ oldest_item_age|floatformat:0 }}s</div>
+		</div>
+		<div class="redirectservice">
+			<div class="redirecttitle">Upload a file</a></div>
+			<div class="redirectdescription">
+				<form action="/file/upload" enctype="multipart/form-data" method="post">
+					<div><input type="file" name="data" /></div>
+					<div><label>filename (make sure to include the extension!):</label></div>
+					<div><textarea name="filename" rows="1" cols="30"></textarea></div>
+					<div><input type="submit" value="Upload"></div>
+				</form>
+			</div>
+		</div>
+		
+		<div class="redirectservice">
+			<div class="redirecttitle"><a href="/file">Uploaded File List</a></div>
+			<div class="redirectdescription">List all uploaded blob data</div>
+		</div>
+		
+		<div class="redirectservice">
+			<div class="redirecttitle">Create new repository project</div>
+			<div class="redirectdescription">
+				<form action="/admin/new_collection" method="post">
+					<div><label>Name:</label></div>
+					<div><textarea name="title" rows="1" cols="60"></textarea></div>
+					<div><label>Description:</label></div>
+					<div><textarea name="description" rows="5" cols="60"></textarea></div>
+					<div><label>Language:</label></div>
+					<div><textarea name="language" rows="1" cols="60"></textarea></div>
+					<div><input type="submit" value="Create Project"></div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

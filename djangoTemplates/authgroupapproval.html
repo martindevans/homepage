@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>Approve authgroup memberships</title>
+		<link rel="stylesheet" type="text/css" href="../../stylesheets/main.css" />
+		<link rel="stylesheet" type="text/css" href="../../stylesheets/redirect.css" />
+	</head>
+	<body>
+		<div class="pagetitle">Group memberships approval</div>
+		{% for app in applications %}
+			<div class="redirectservice">
+				<div class="redirecttitle">Approve Application</div>
+				<div class="redirectdescription">Application by <b>{{ app.member }}</b> to join <b>{{ app.group.title }}</b></div>
+				<form action="/admin/allow_auth_application?{{ app.key }}" method="post">
+					<div><input type="submit" value="Allow" /></div>
+				</form>
+				<form action="/admin/disallow_auth_application?{{ app.key }}" method="post">
+					<div><input type="submit" value="Disallow" /></div>
+				</form>
+			</div>
+		{% endfor %}
+		<div class="footer">
+			<div class="headercomment">Page written by martindevans</div>
+			<div class="headercomment">Page hosted by google</div>
+			<div class="headercomment">Contact me on:</div>
+			<div class="headercomment"><a href="mailto://martindevans@gmail.com">martindevans@gmail.com</a></div>
+			<div class="headercomment">administrate this site:</div>
+			<div class="headercomment"><a href="/admin">administration panel</a></div>
+		</div>
+	</body>	
+</html>

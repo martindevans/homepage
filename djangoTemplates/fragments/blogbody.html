@@ -1,0 +1,98 @@
+<table>	
+	<tr>
+		<td>
+			<div class="blogcolumnbox">
+				Other Blogs I read:
+				<div class="blogcomment">
+					<a href="http://tomgillen.blogspot.com/">Thomas Gillen</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://www.introversion.co.uk/blog/index.php">Introversion Software</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://www.catalinzima.com/">Catalin Zima</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://news.quelsolaar.com/">Qual Solaar</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://www.ziggyware.com/news.php">Ziggyware</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://digierr.spaces.live.com/">Digital Error</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://blogs.msdn.com/xna/">XNA Team Blog</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://blogs.msdn.com/shawnhar/">Shawn Hargreaves</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://www.codinghorror.com/blog/">Coding Horror</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://nickgravelyn.com/">Nick Gravelyn</a>
+				</div>
+				<div class="blogcomment">
+					<a href="http://surrealness.org">Surrealness</a>
+				</div>
+			</div>
+		</td>
+		
+		<td>
+			<div class="blogentry">
+				<div class="blogtitle">{{ BlogPost.title }}</div>
+				<div class="blogcontent"><blockquote>{{ BlogPost.content|linebreaks }}</blockquote></div>
+				<div class="blogfooter">
+					Posted on {{ BlogPost.date }}<br />
+					This post : {{ viewcount }} views<br />
+					Permalink: <a href="/blog/perma?{{ key }}">http://martindevans.appspot.com/blog/perma?{{ key }}</a>
+				</div>
+			</div>
+			<br />
+			<div class="blogcommentsection">
+				<form action="/blog/signblog?{{ key }}" method="post">
+					<div>Author:</div>
+					<div><textarea name="author" align="center" rows="1" cols="30"></textarea></div>
+					<div>Post:</div>
+					<div><textarea name="content" align="center" rows="3" cols="50"></textarea></div>
+					
+					<div align="center">{{ captchahtml }}</div>
+					
+					<div><input type="submit" align="center" value="Post a comment"></input></div>
+				</form>
+				{% for BlogComment in blogcomments %}
+					<a name="{{ BlogComment.key }}"></a>
+					<div class="blogcomment">
+						{{ BlogComment.content|escape|linebreaks }}
+						<div class="blogcommentfooter">
+							written by {{ BlogComment.authorName }} , on the {{BlogComment.date }}
+						</div>
+						{% if isadmin %}
+							<div class = "blogcommentfooter">
+								<form action="/blog/deletecomment" method="post">
+									<input type="hidden" name="commentkey" value="{{ BlogComment.key }}"></input>
+									<input type="hidden" name="blogentrykey" value="{{ BlogPost.key }}"></input>
+									<div><input type="submit" value="Delete Comment"></input></div>
+								</form>
+							</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		</td>
+		
+		<td>
+			<div class="blogcolumnbox">
+				{{ previousposts }}
+			</div>
+		</td>
+	</tr>
+</table>
+
+<div class="footer">
+	<a href="http://feedvalidator.org/check.cgi?url=http%3A//martindevans.appspot.com/blog/rss.xml"><img src="../images/valid-rss.png" alt="[Valid RSS]" title="Validate my RSS feed" /></a>
+	<a href="http://jigsaw.w3.org/css-validator/check/referer"><img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" /></a>
+    <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a>
+	<img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
+</div>

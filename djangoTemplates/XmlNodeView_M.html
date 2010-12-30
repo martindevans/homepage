@@ -1,0 +1,37 @@
+<div class="XmlNode" id="{{ self.UniqueId }}">
+	<table>
+		<tr>
+			<td><img alt="plus" src="../images/xml_plus.png"/></td>
+			<td>&lt;{{ self.DomNode.localName }}&gt;</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td>
+				<div class="XmlNodeContent">
+					{{ self.Content }}
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<table>
+					{% for c in self.GetChildren %}
+						<tr>
+							<td>
+								{{ c.Render }}
+							</tr>
+						</td>
+					{% endfor %}
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				&lt;/{{ self.DomNode.localName }}&gt;
+			</td>
+		</tr>
+	</table>
+</div>

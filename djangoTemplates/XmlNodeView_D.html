@@ -1,0 +1,25 @@
+<div class="XmlNode" id="{{ self.UniqueId }}">
+	<table class="title">
+		<tr class="title">
+			<td class="plus"><img alt="plus" src="../images/plus.png"/></td>
+			{% for x in self.DepthList %}
+				<td class="indent" width="25px"></td>
+			{% endfor %}
+			<td class="title">&lt;{{ self.DomNode.localName }}&gt;</td>
+		</tr>
+    </table>
+
+	{% for c in self.GetChildren %}
+		{{ c.Render }}
+	{% endfor %}
+
+	<table class="close">
+		<tr class="close">
+			<td class="indent"></td>
+			{% for x in self.DepthList %}
+				<td class="indent" width="25px"></td>
+			{% endfor %}
+			<td class="close">&lt;{{ self.DomNode.localName }}&gt;</td>
+		</tr>
+    </table>
+</div>

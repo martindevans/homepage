@@ -1,0 +1,13 @@
+<div class="forumlist">
+	{% for forum in forums %}
+		<div class="forum">
+			{% if forum.AllowedToView %}
+				<div class="forumtitle"><a href=/messageboard/forum?{{ forum.key }}>{{ forum.title }}</a></div>
+				<div class="forumdescription">{{ forum.description }}</div>
+			{% else %}
+				<div class="forumtitle">{{ forum.title }}</a></div>
+				<div class="forumdescription">You must be a member of the group <div style="font-weight:bold; display:inline;">"{{ forum.authgroup.title }}"</div> to view this forum</div>
+			{% endif %}
+		</div>
+	{% endfor %}
+</div>

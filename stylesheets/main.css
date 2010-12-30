@@ -1,0 +1,42 @@
+.pagetitle
+{
+	font-size: 25pt;
+	display: block;
+	text-align: center;
+}
+
+a
+{
+	color: blue;
+	font-weight: bold;
+}
+
+.headercomment
+{
+	font-size: 10pt;
+	display: block;
+	text-align: center;
+}
+
+.smallcomment
+{
+	font-size: 7pt;
+	display: block;
+	text-align: center;
+}
+
+.footer
+{
+	display: block;
+	font-size: 55%;
+	margin-top: 2em;
+	margin-bottom: 1em;
+	margin-left: 25%;
+	margin-right: 25%;
+	width: 50%;
+	text-align: center;
+	background-color: gray;
+	border: solid 3px black;
+	padding: 0.5em;
+	color: black;
+}

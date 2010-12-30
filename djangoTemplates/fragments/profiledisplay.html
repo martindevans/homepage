@@ -1,0 +1,14 @@
+<div class="forumprofile">
+	Username: {{ userprofile.user }}<br />
+	Alias: {{ userprofile.alias }}<br />
+	Email: {{ userprofile.user.email }}<br />
+	Unique User ID: {{ userprofile.userid }}<br />
+	{% if post.author|useralias %}AKA {{ post.author|useralias }}<br />{% endif %}
+	<script type="text/javascript">
+		email = "{{ userprofile.user.email|lower }}";
+		hash = hex_md5(email);
+		address = "http://www.gravatar.com/avatar/" + hash + ".jpg";
+		document.write("<img src=\"" + address + "\" alt=\"avatar of {{ post.author.nickname }}?r=r\" />");
+	</script><br />
+	posts: {{ userprofile.GetPostCount }}
+</div>

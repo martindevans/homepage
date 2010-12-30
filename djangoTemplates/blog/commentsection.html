@@ -1,0 +1,24 @@
+<div class="contentbox" id="commentsection">
+	<div class="contentbox" id="oldcomments">
+		{% for comment in comments %}
+			<a name="{{ comment.key }}"></a>
+			<div class="contentbox" id="comment">
+				{{ comment.content }}
+				<div class="footer" id="commentfooter">
+					{{ comment.authorName }} wrote this on {{ comment.date|date:"D d M Y" }}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="contentbox" id="comments">
+		{% if user %}
+			<form action="/blog/signblog?{{ key }}" method="post">
+				<div><textarea name="content" align="center" rows="3" cols="50"></textarea></div>
+				<div><input type="submit" align="center" value="Submit comment"></input></div>
+			</form>
+			<a href="{{ loginhref }}">Log out</a>
+		{% else %}
+			<a href="{{ loginhref }}">Log in</a> to make a comment
+		{% endif %}
+	</div>
+</div>

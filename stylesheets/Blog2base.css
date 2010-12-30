@@ -1,0 +1,161 @@
+body
+{
+	font-family: Verdana, Sans-serif, "Courier New";
+}
+
+a
+{
+	font-weight: bold;
+}
+
+.page
+{
+	position: absolute;
+	margin-left: 5%;
+	top: 0px;
+	width: 921px; /* 1024 - 0.1 * 1024 */
+	height: 100%;
+}
+
+.bannermenu
+{
+	position: absolute;
+	height: 35px;
+	width: 650px;
+	margin-left: 71px;
+	top: 115px;
+}
+
+.bannermenuentry
+{
+	position: float;
+	float: left;
+	margin-left: 7.142px;
+	width: 100px;
+	height: 35px;
+	text-align: center;
+}
+
+.innerbanner
+{
+	position: absolute;
+	top: 0;
+	width: 921px;
+	height: 150px;
+}
+
+.innerpage
+{
+	position: absolute;
+	top: 150px;
+	margin-left: 0%;
+	width: 100%;
+}
+
+.content
+{
+	position: absolute;
+	left: 0%;
+	width: 721px;
+	top : 0px;
+}
+
+.rightmenu
+{
+	position: absolute;
+	margin-left: 721px;
+	top: -100px;
+	width: 200px;
+}
+
+.rightmenuentry
+{
+	width: 190px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: right;
+	font-size: 15px;
+	font-family: "Verdana";
+}
+
+.rightmenuentry .entrytitle
+{
+	text-transform: uppercase;
+	font-family: "Lucida Console";
+	font-size: 20px;
+	text-align: right;
+}
+
+.blogrollentry
+{
+	padding-bottom: 2px;
+	padding-right: 3px;
+}
+
+.rightmenuentry a
+{
+	font-style: normal;
+	font-weight: normal;
+}
+
+.blogpost
+{
+	padding: 10px;
+	line-height: 140%;
+}
+
+.footer
+{
+	font-family: Monospace;
+	font-size: 10px;
+}
+
+.contentbox
+{
+	margin: 5px;
+}
+
+#postdate
+{
+	font-size: 0.5em;
+}
+
+#postfooter
+{
+	font-size: 0.5em;
+}
+
+#views
+{
+	font-size: 20px;
+}
+
+#entrytags
+{
+	font-size: 0.5em;
+}
+
+#bigtitle
+{
+	position: absolute;
+	top: 0.2em;
+	margin-left: 0.3em;
+	font-family: "Courier New";
+	font-size: 50px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#posttitle
+{
+	font-family: Arial, Sans-serif;
+	font-size: 30px;
+	font-weight: bold;
+	margin-left: 1em;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	line-height: 100%;
+}

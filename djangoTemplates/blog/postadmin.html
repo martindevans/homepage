@@ -1,0 +1,12 @@
+<a href="/admin">Admin Panel</a>
+<br />
+<form action="/blog/tags" method="post">
+	<div><label>Tag Name:</label></div>
+	<div><input type="text" name="tagname" /></div>
+	<input type="hidden" name="key" value="{{ key }}" />
+	<div><input type="submit" value="Create"></div>
+</form>
+<form action="/blog/deleterender" method="get">
+	<input type="hidden" name="key" value="{{ key }}" />
+	<div><input type="submit" value="Refresh Render Cache"></div>
+</form>

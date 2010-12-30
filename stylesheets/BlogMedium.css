@@ -1,0 +1,59 @@
+body
+{
+	background-color: gray;
+	background-image: url(../../images/brushedMetal.jpg);
+	background-repeat: repeat;
+}
+
+a
+{
+	color: black;
+}
+
+.blogpageheader
+{
+	color: black;
+}
+
+.blogentry
+{
+	background-color: #878787;
+	color: black;
+}
+
+.blogtitle
+{
+}
+
+.blogcontent
+{
+}
+
+.blogfooter
+{
+}
+
+.blogcommentsection
+{
+	background-color: #878787;
+	color: black;
+}
+
+.blogcomment
+{
+	background-color: #575757;
+	border-color: white;
+	color: white;
+}
+
+.blogcommentfooter
+{
+	background-color: gray;
+	color: black;
+}
+
+.blogcolumnbox
+{
+	background-color: #878787;
+	color: black;
+}

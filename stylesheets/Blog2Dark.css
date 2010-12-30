@@ -1,0 +1,100 @@
+body
+{
+	background-color: #000010;
+}
+
+a
+{
+	font-weight: bold;
+	color: black;
+}
+
+.page
+{
+	background-color: #181838;
+}
+
+.bannermenu
+{
+	background-color: #8888CC;
+}
+
+.bannermenuentry
+{
+	background-color: #8888CC;
+}
+
+.innerbanner
+{
+	background-color: #181838;
+}
+
+.content
+{
+	background-color: #AAAADD;
+}
+
+.rightmenu
+{
+	background-color: #AAAADD;
+}
+
+.rightmenuentry
+{
+	background-color: #8888CC;
+}
+
+.rightmenuentry .entrytitle
+{
+	border-bottom: solid 1px black;
+}
+
+.blogrollentry
+{
+	
+}
+
+.rightmenuentry a
+{
+	
+}
+
+.blogpost
+{
+	
+}
+
+.footer
+{
+	
+}
+
+.contentbox
+{
+	
+}
+
+#postfooter
+{
+	
+}
+
+#views
+{
+	
+}
+
+#bigtitle
+{
+	color: #CCCCFF;
+}
+
+#posttitle
+{
+	
+}
+
+#commentsection
+{
+	background-color: #8888CC;
+}

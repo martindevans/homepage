@@ -1,0 +1,17 @@
+<div class="forumprofile">
+	Username: {{ userprofile.user }}<br />
+	<form action="/messageboard/modifyprofilealias?{{ userprofile.userid }}" method="post">
+		<label for="aliasinput">Alias</label>
+		<input type="text" name="alias" id="aliasinput" value="{{ userprofile.alias }}"></input>
+		<input type="submit" value="Submit" />
+	</form>
+	Email: {{ userprofile.user.email }}<br />
+	Unique User ID: {{ userprofile.userid }}<br />
+	<script type="text/javascript">
+		email = "{{ userprofile.user.email|lower }}";
+		hash = hex_md5(email);
+		address = "http://www.gravatar.com/avatar/" + hash + ".jpg";
+		document.write("<img src=\"" + address + "\" alt=\"avatar of {{ post.author.nickname }}?r=r\" />");
+	</script><br />
+	posts: {{ userprofile.GetPostCount }}
+</div>

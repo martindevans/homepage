@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>New forum</title>
+		<link rel="stylesheet" type="text/css" href="../../stylesheets/main.css" />
+		<link rel="stylesheet" type="text/css" href="../../stylesheets/redirect.css" />
+	</head>
+	<body>
+		<div class="pagetitle">forum Creation</div>
+		<div class="redirectservice">
+			<div class="redirecttitle">New forum</div>
+			<div class="redirectdescription">Create a new forum</div>
+			<form action="/admin/makeforum" method="post">
+				<div><textarea name="title" rows="1" cols="30"></textarea></div>
+				<div><textarea name="description" rows="10" cols="60"></textarea></div>
+				<select name="authdropdown">
+				<option value="none">None (Everyone can access)</option>
+				{% for auth in authgroups %}
+					<option value="{{ auth.key }}">{{ auth.title }}</option>
+				{% endfor %}
+			</select>
+				<div><input type="submit" value="Create" /></div>
+			</form>
+		</div>
+		<div class="footer">
+			<div class="headercomment">Page written by martindevans</div>
+			<div class="headercomment">Page hosted by google</div>
+			<div class="headercomment">Contact me on:</div>
+			<div class="headercomment"><a href="mailto://martindevans@gmail.com">martindevans@gmail.com</a></div>
+			<div class="headercomment">administrate this site:</div>
+			<div class="headercomment"><a href="/admin">administration panel</a></div>
+		</div>
+	</body>	
+</html>

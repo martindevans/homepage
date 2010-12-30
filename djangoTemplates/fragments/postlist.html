@@ -1,0 +1,35 @@
+{% for post in posts %}
+	<a name="{{ post.key }}" />
+	<div class="forumpost">
+		<div class="forumposthead">
+			<a href="/messageboard/thread?{{ thread.key }}#{{ post.key}}">{{ post.date|date:"d-M-Y" }} {{ post.date|date:"H:i A" }}</a>
+			{% if post.IsModeratable %}
+				<img src="../images/deleteicon.png" width="13" height="13" alt="delete" onclick="if (confirm('Delete this post?')){window.location = '/messageboard/deletepost?{{ post.key }}';}" />
+			{% endif %}
+		</div>
+		<table>
+			<tr>
+				<td>
+					<div class="forumavatar">
+						<center>
+							<a href="{{ post.GetAuthorProfileLink }}">
+								{{ post.author.nickname }}<br />
+								{% if post.author|useralias %}AKA {{ post.author|useralias }}<br />{% endif %}
+							</a>
+							<script type="text/javascript">
+								email = "{{ post.author.email|lower }}";
+								hash = hex_md5(email);
+								address = "http://www.gravatar.com/avatar/" + hash + ".jpg";
+								document.write("<img src=\"" + address + "\" alt=\"avatar of {{ post.author.nickname }}?r=r\" />");
+							</script><br />
+							posts: {{ post.GetAuthorPostCount }}
+						</center>
+					</div>
+				</td>
+				<td>
+					{{ post.GetAllowedContent|bbcode }}
+				</td>
+			</tr>
+		</table>
+	</div>
+{% endfor %}

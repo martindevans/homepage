@@ -1,0 +1,23 @@
+<div class="XmlNode" id="node{{ self.UniqueId }}">
+
+	<div class="XmlButton" id="header{{ self.UniqueId }}">
+		<img alt="button" src="../images/xml_minus.png" width="20" height="20"/>
+	</div>
+	<div class="XmlOffsetContent" id="offsetstart{{ self.UniqueId }}" style="left:{{ self.PixelOffset }}px;">
+		&lt;{{ self.DomNode.localName }}&gt;<br />
+		<div style="position:relative; left:30px;">
+			{{ self.Content }}
+		</div>
+	</div>
+	
+	<div class="XmlNodeChildren" id="children{{ self.UniqueId }}">
+		{% for c in self.GetChildren %}
+			{{ c.Render }}
+		{% endfor %}
+	</div>
+	
+	<div style="width:20px; height:20px; float:left; clear:left;"></div>
+	<div class="XmlOffsetContent" id="offsetclose{{ self.UniqueId }}" style="left:{{ self.PixelOffset }}px;">
+		&lt;/{{ self.DomNode.localName }}&gt;
+	</div>
+</div>

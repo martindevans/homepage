@@ -1,0 +1,18 @@
+<div class="forumlist">
+	<div class="forumthread">
+		<div class="forumpageheader">Create a new Topic</div>
+		<div>Thread title:</div>
+		<form action="/messageboard/postnewthread?{{ key }}" method="post">
+			<div><textarea name="title" rows="1" cols="30"></textarea></div>
+			<div><label>First entry in thread</label></div>
+			<div><textarea name="content" rows="10" cols="60"></textarea></div>
+			<select name="authdropdown">
+				{% for auth in authgroups %}
+					<option value="{{ auth.key }}">{{ auth.title }}</option>
+				{% endfor %}
+				<option value="none">None (Everyone can access)</option>
+			</select>
+			<div><input type="submit" value="Create" /></div>
+		</form>
+	</div>
+</div>

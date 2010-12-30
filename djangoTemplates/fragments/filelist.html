@@ -1,0 +1,12 @@
+<!-- a list of blobclasses.BlobFile !-->
+<center>There are {{ count }} files...</center>
+{% for file in files %}
+<div class="redirectservice">
+	<div class="redirecttitle">{{ file.title }}</div>
+	<div class="redirectdescription">Author: {{ file.author }}</div>
+	<div class="redirectdescription">Modifier: {{ file.modifier }}</div>
+	<div class="redirectdescription">Date: {{ file.date }}</div>
+	<div class="redirectdescription">Permalink: <a href="/file/{{ file.title }}?{{ file.key }}">http://martindevans.appspot.com/file/{{ file.title }}?{{ file.key }}</a></div>
+	<div class="redirectdescription">Downloads: {{ file.GetDownloadCount|default:"0" }}</div>
+</div>
+{% endfor %}

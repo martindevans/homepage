@@ -1,0 +1,23 @@
+{% for thread in threads %}
+	{% if thread.AllowedToView %}
+	<div class="forumthread">
+		<div class="forumpageheader">
+			<a href=/messageboard/thread?{{ thread.key }}>
+				{{ thread.title }}
+			</a>
+		</div>
+		<div class="forumdescription">posted on {{ thread.date|date:"d-M-Y" }} {{ thread.date|date:"H:i A" }}</div>
+		<div class="forumdescription">last reply on {{ thread.lastUpdated|date:"d-M-Y" }} {{ thread.lastUpdated|date:"H:i A" }}</div>
+		<div class="forumdescription">{{ thread.GetThreadPostCount }} repl{{ thread.GetThreadPostCount|pluralize:"y,ies" }}</div>
+	</div>
+	{% else %}
+		<div class="forumthread">
+			<div class="forumpageheader">
+				You are not authorised to view this thread
+			</div>
+		<div class="forumdescription">
+			{{ thread.authgroup.title }} only
+		</div>
+	</div>
+	{% endif %}
+{% endfor %}

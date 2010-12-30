@@ -1,0 +1,13 @@
+<!-- a form for uploading a new file and attaching the BlobFile to a FileRepositoryCollection!-->
+<div class="redirectservice">
+	<div class="redirecttitle">Upload a file</a></div>
+	<div class="redirectdescription">
+		<form action="/repository/attach?{{ projectkey }}" enctype="multipart/form-data" method="post">
+			<div><input type="file" name="data" /></div>
+			<div><label>filename (make sure to include the extension!):</label></div>
+			<div><textarea name="filename" rows="1" cols="30"></textarea></div>
+			<div><input type="submit" value="Upload"></div>
+		</form>
+	</div>
+</div>
+

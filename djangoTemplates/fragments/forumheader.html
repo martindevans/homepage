@@ -1,0 +1,20 @@
+<div class="headercomment">
+	<div class="forumpageheader">
+		<div class="forumpageheaderLink"><a href="/">Homepage</a> <a href="/messageboard">Forum List</a> <a href="/pages/bbcodeguide.html">BB code guide</a></div>
+		
+		{% for title in titles %}
+			<div class="pagetitle">{{ title }}</div>
+		{% endfor %}
+		<br />
+		
+		<div class="forumpageheaderLink"><a href="/messageboard/profile?me">Profile</a> <a href="{{ logouthtml }}">Log Out</a></div>
+		{% if includenewlink %}
+			<div class="forumpageheaderLink"><a href="/messageboard" id="newcontent">New Since Last Visit</a></div>
+		{% endif %}
+		<br />
+		<a href="JavaScript:changeSheets('dark')">Dark Style</a>
+		<a href="JavaScript:changeSheets('medium')">Medium Style</a>
+		<a href="JavaScript:changeSheets('light')">Light Style</a>
+		<br />
+	</div>
+</div>

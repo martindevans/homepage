@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url> <!-- blog !-->
+		<loc>http://martindevans.appspot.com/blog/latest</loc>
+		<changefreq>weekly</changefreq>
+		<priority>1</priority>
+	</url>
+	<url> <!-- forum root !-->
+		<loc>http://martindevans.appspot.com/messageboard</loc>
+		<changefreq>always</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url> <!-- homepage !-->
+		<loc>http://martindevans.appspot.com/pages/redirect.html</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url> <!-- repository !-->
+		<loc>http://martindevans.appspot.com/repository</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.3</priority>
+	</url>
+	<url> <!-- blog stats !-->
+		<loc>http://martindevans.appspot.com/blog/stats</loc>
+		<changefreq>always</changefreq>
+		<priority>0.1</priority>
+	</url>
+</urlset>

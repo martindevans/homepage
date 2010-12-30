@@ -1,0 +1,12 @@
+{% for collection in collections %}
+	<div class="redirectservice">
+		<div class="redirecttitle">
+			<a href="/repository/listallfiles?{{ collection.key }}">{{ collection.title }}</a>
+		</div>
+		<div class="redirectdescription">{{ collection.description }}</div>
+		<div class="redirectdescription">Author: {{ collection.author }}</div>
+		<div class="redirectdescription">language: {{ collection.language }}</div>
+		<div class="redirectdescription">Date: {{ collection.date }}</div>
+		<div class="redirectdescription">{{ collection.containedFiles|length }} contained file{{ collection.containedFiles|length|pluralize }}</div>
+	</div>
+{% endfor %}

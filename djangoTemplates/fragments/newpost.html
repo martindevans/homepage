@@ -1,0 +1,15 @@
+<div class="forumlist">
+	<div class="forumthread">
+		<div class="forumpageheader">Create a new reply</div>
+		<form action="/messageboard/postnewpost?{{ key }}" method="post">
+			<div><textarea name="content" rows="10" cols="60"></textarea></div>
+			<select name="authdropdown">
+				{% for auth in authgroups %}
+					<option value="{{ auth.key }}">{{ auth.title }}</option>
+				{% endfor %}
+				<option value="none">None (Everyone can access)</option>
+			</select>
+			<div><input type="submit" value="Reply" /></div>
+		</form>
+	</div>
+</div>

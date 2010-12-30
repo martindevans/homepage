@@ -1,0 +1,10 @@
+{% for membership in groups %}
+	<div class="forumthread">
+		<div class="forumpageheader">
+			{{ membership.title }}
+		</div>
+		<div class="forumdescription">
+			{{ membership.description }}
+		</div>
+	</div>
+{% endfor %}

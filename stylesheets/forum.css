@@ -1,0 +1,130 @@
+body
+{
+	font-family: Arial;
+}
+
+a
+{
+	font-weight: bold;
+}
+
+.forumpageheader
+{
+	display: block;
+	border-style: none;
+}
+
+.forumpageheaderLink
+{
+	display: block;
+	margin: 0.3em;
+}
+
+.forumlist
+{
+	display: block;
+	padding: 0.5em;
+	border-style: none;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.forumlistoptioncontainer
+{
+	display: block;
+	border-style: double;
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.forumlistoption
+{
+	margin: 0.2em;
+}
+
+.forum
+{
+	display: block;
+	border-style: solid;
+	border-width: 1px;
+	padding: 1em;
+	margin-top: 1em;
+	text-align: center;
+}
+
+.forumthread
+{
+	display: block;
+	border-style: solid;
+	border-width: 1px;
+	padding: 0.2em;
+	margin-top: 0.2em;
+	text-align: center;
+}
+
+.forumavatar
+{
+	padding: 0.3em;
+	margin: 0.0em;
+	border-width: 1px;
+	border-top-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	border-right-style: solid;
+	font-size: 75%;
+}
+
+.forumposthead
+{
+	padding: 0.3em;
+	margin: 0.0em;
+	border-width: 1px;
+	border-top-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-right-style: none;
+	font-size: 75%;
+}
+
+.forumpost
+{
+	display: block;
+	border-style: solid;
+	border-width: 1px;
+	padding: 0.2em;
+	margin-top: 0.2em;
+	text-align: left;
+}
+
+.forumtitle
+{
+	border-top-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-right-style: none;
+	border-width: 1px;
+	padding-bottom: 0.1em;
+}
+
+.forumdescription
+{
+	display: block;
+	font-size: 75%;
+}
+
+.forumprofile
+{
+	margin-left: 25%;
+	border-style: solid;
+	border-width: 1px;
+	text-align: center;
+	width: 50%;
+}
+
+.forumquote
+{
+	border-style: solid;
+	border-width: 1px;
+	padding: 0.5em;
+}

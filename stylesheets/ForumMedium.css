@@ -1,0 +1,93 @@
+body
+{
+	background-color: gray;
+	background-image: url(../../images/brushedMetal.jpg);
+	background-repeat: repeat;
+}
+
+a
+{
+	color: black;
+}
+
+.forumpageheader
+{
+	color: black;
+	background-color: #878787;
+}
+
+.forumpageheaderLink
+{
+	background-color: #878787;
+	color: black;
+}
+
+.forumlist
+{
+	color: black;
+	background-color: #878787;
+}
+
+.forumlistoptioncontainer
+{
+	color: black;
+	background-color: #878787;
+	border-color: black;
+}
+
+.forumlistoption
+{
+	background-color: #878787;
+	color: black;
+}
+
+.forum
+{
+	background-color: #575757;
+	border-color: black;
+}
+
+.forumthread
+{
+	background-color: #575757;
+	border-color: black;
+}
+
+.forumavatar
+{
+	border-color: black;
+}
+
+.forumposthead
+{
+	border-color: black;
+}
+
+.forumpost
+{
+	background-color: #575757;
+	border-color: black;
+}
+
+.forumtitle
+{
+	background-color: #878787;
+	border-color: black;
+}
+
+.forumdescription
+{
+	background-color: #878787;
+	color: black;
+}
+
+.forumprofile
+{
+	color: black;
+	background-color: #878787;
+}
+
+.forumquote
+{
+	background-color: #878787;
+}

@@ -1,0 +1,56 @@
+body
+{
+	background-color: #F5FAFF;
+}
+
+a
+{
+	color: black;
+}
+
+.blogpageheader
+{
+	color: black;
+}
+
+.blogentry
+{
+	background-color: #E5EAFF;
+	color: black;
+}
+
+.blogtitle
+{
+}
+
+.blogcontent
+{
+}
+
+.blogfooter
+{
+}
+
+.blogcommentsection
+{
+	background-color: #E5EAFF;
+	color: black;
+}
+
+.blogcomment
+{
+	background-color: white;
+	border-color: black;
+	color: black;
+}
+
+.blogcommentfooter
+{
+	background-color: gray;
+	color: white;
+}
+
+.blogcolumnbox
+{
+	background-color: #E5EAFF;
+	color: black;

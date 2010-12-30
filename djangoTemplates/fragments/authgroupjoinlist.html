@@ -1,0 +1,14 @@
+{% for group in groups %}
+	<div class="forumthread">
+		<div class="forumpageheader">
+			{{ group.title }}
+		</div>
+		<div class="forumdescription">
+			{{ group.description }}
+		</div>
+		<form action="/messageboard/joingroup_request?{{ group.key }}" method="post">
+			<input type="hidden" name="redirect" value="{{ redirecturl }}">
+			<div><input type="submit" value="Apply"></div>
+		</form>
+	</div>
+{% endfor %}

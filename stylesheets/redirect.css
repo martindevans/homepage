@@ -1,0 +1,36 @@
+body
+{
+	background-color: gray;
+	background-image: url(../../images/brushedMetal.jpg);
+	background-repeat: repeat;
+	font-family: Arial, sans-serif; font-size: 180%;
+}
+
+.redirectservice
+{
+	display: block;
+	margin: 0.5em;
+	text-align: center;
+	background-color: #333333;
+	border: solid 3px black;
+	padding-bottom: 0.3em;
+}
+
+.redirecttitle
+{
+	display: block;
+	color: black;
+	font-size: 90%;
+	border: solid 1px black;
+	margin: 0.0em;
+	padding-bottom: 0.3em;
+	background-color: gray;
+}
+
+.redirectdescription
+{
+	display: list-item;
+	color: white;
+	font-size: 45%;
+	text-align: center;
+}
