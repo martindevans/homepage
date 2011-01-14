@@ -46,6 +46,38 @@ class BlogViews(webapp.RequestHandler):
     def get(self):
         self.response.out.write(str(GetViews(self.request.query_string)))
 
+class FilterPage(webapp.RequestHandler):
+	def get(self):
+		results = []
+	
+		tag = classes.BlogTag.all().filter("title = ", self.request.get("tag")).get()
+		if (tag is not None):
+			links = classes.BlogTagLink.all().filter("Tag = ", tag)
+			for l in links:
+				if l.Post not in results:
+					results.append(l.Post)
+		results.sort(key=lambda post: post.date)
+		results.reverse()
+	
+		def makeDescriptiveString(blogPost):
+			links = classes.BlogTagLink.all().filter("Post = ", blogPost)
+			return "<a href=perma?" + str(blogPost.key()) + ">" + blogPost.title + "</a><br />" + blogPost.date.strftime("%d %b %Y") + "<br />Tagged : " + ", ".join([l.Tag.title for l in links])
+	
+		result = {}
+		result["title"] = str(len(results)) + " Entries Tagged \"" + tag.title + "\""
+		result["content"] = "<br /><br />".join([makeDescriptiveString(p) for p in results])
+	
+		template_values = {
+			'first_post': GetFirstPost(),
+			'previous_post': None,
+			'entry': result,
+        }
+    
+		path = os.path.join(os.path.dirname(__file__), '../djangoTemplates/blog/bloglayout.html')
+		html = template.render(path, template_values)
+	
+		self.response.out.write(html.decode("utf-8"))
+		
 class RecentEntries(webapp.RequestHandler):
     def get(self):
         #DEBUGGING!
@@ -61,25 +93,22 @@ class RecentEntries(webapp.RequestHandler):
 
 class NextEntry(webapp.RequestHandler):
     def get(self):
-        nextEntryHtml = memcache.get('nextEntryHtml' + self.request.query_string)
-        if nextEntryHtml is None:
-            entry = GetEntry(self.request.query_string)
-            next_entries_query = blog.classes.BlogPost.gql("WHERE date > :myDate ORDER BY date ASC LIMIT 1", myDate=entry.date)
-            nextEntryHtml = next_entries_query.get()
-            if (nextEntryHtml is None):
-                nextEntryHtml = "Next"
-            else:
-                nextEntryHtml = '<a href="/blog/perma?' + str(nextEntryHtml.key()) + '">Next</a>'
-            #no timeout, next post never changes, unless a new one is added in which case next is none and this runs anyway
-            memcache.set('nextEntry' + self.request.query_string, nextEntryHtml)
-        self.response.out.write(nextEntryHtml)
-
-class BlogRoll(webapp.RequestHandler):
-	def get(self):
-		print "Hello"
-		
-	def post(self):
-		print "Hi"
+		try:
+			key = db.Key(self.request.query_string)
+			nextEntryHtml = memcache.get('nextEntryHtml' + self.request.query_string)
+			if nextEntryHtml is None:
+				entry = GetEntry(self.request.query_string)
+				next_entries_query = blog.classes.BlogPost.gql("WHERE date > :myDate ORDER BY date ASC LIMIT 1", myDate=entry.date)
+				nextEntryHtml = next_entries_query.get()
+				if (nextEntryHtml is None):
+					nextEntryHtml = "Next"
+				else:
+					nextEntryHtml = '<a href="/blog/perma?' + str(nextEntryHtml.key()) + '">Next</a>'
+				#no timeout, next post never changes, unless a new one is added in which case next is none and this runs anyway
+				memcache.set('nextEntry' + self.request.query_string, nextEntryHtml)
+			self.response.out.write(nextEntryHtml)
+		except db.BadKeyError:
+			self.response.out.write("Next")
 		
 class TagCloud(webapp.RequestHandler):
     def get(self):
@@ -104,26 +133,30 @@ def GetTagCount(tag):
 
 class EntryTags(webapp.RequestHandler):
     def get(self):
-        tags = classes.BlogTagLink.all()
-        tags.filter("Post = ", db.get(db.Key(self.request.query_string)))
-        words = [t.Tag.title for t in tags]
-        self.response.out.write(', '.join(words))
+		try:
+			key = db.Key(self.request.query_string)
+			tags = classes.BlogTagLink.all()
+			tags.filter("Post = ", db.get(key))
+			words = ["<a href=\"filter?tag=" + t.Tag.title + "\">" + t.Tag.title + "</a>" for t in tags]
+			self.response.out.write(', '.join(words))
+		except db.BadKeyError:
+			pass
 
     def post(self):
-        key = self.request.get("key")
-        
-        tag = classes.BlogTag.all().filter("title = ", self.request.get("tagname")).get()
-        if tag is None:
-            tag = classes.BlogTag()
-            tag.title = self.request.get("tagname")
-            tag.put()
-        
-        link = classes.BlogTagLink()
-        link.Tag = tag
-        link.Post = db.get(db.Key(key))
-        link.put()
-        
-        self.redirect("/blog/perma?" + key)
+		key = self.request.get("key")
+	
+		if (users.is_current_user_admin()):			
+			tag = classes.BlogTag.all().filter("title = ", self.request.get("tagname")).get()
+			if tag is None:
+				tag = classes.BlogTag()
+				tag.title = self.request.get("tagname")
+				tag.put()
+			
+			link = classes.BlogTagLink()
+			link.Tag = tag
+			link.Post = db.get(db.Key(key))
+			link.put()
+		self.redirect("/blog/perma?" + key)
 
 def GetViews(keystring):
     return GeneralCounter.get_count(keystring)
@@ -198,18 +231,22 @@ def RenderHtml(blogpost):
 
 class CommentSection(webapp.RequestHandler):
     def get(self):
-        post = db.get(self.request.query_string)
-        
-        template_values = {
-            'key' : str(post.key()),
-            'comments' : classes.BlogComment.all().filter("ParentPost = ", str(post.key())),
-            'user' : users.get_current_user(),
-            'loginhref': users.create_login_url('/blog/perma?' + str(post.key())),
-            'logouthref': users.create_logout_url('/blog/perma?' + str(post.key()))
-            }
-        
-        path = os.path.join(os.path.dirname(__file__), '../djangoTemplates/blog/commentsection.html')
-        self.response.out.write(template.render(path, template_values))
+		try:
+			key = db.Key(self.request.query_string)
+			post = db.get(key)
+			
+			template_values = {
+				'key' : str(post.key()),
+				'comments' : classes.BlogComment.all().filter("ParentPost = ", str(post.key())),
+				'user' : users.get_current_user(),
+				'loginhref': users.create_login_url('/blog/perma?' + str(post.key())),
+				'logouthref': users.create_logout_url('/blog/perma?' + str(post.key()))
+				}
+			
+			path = os.path.join(os.path.dirname(__file__), '../djangoTemplates/blog/commentsection.html')
+			self.response.out.write(template.render(path, template_values))
+		except db.BadKeyError:
+			pass
 
 class DeleteRender(webapp.RequestHandler):
     def get(self):
@@ -262,11 +299,11 @@ application = webapp.WSGIApplication(
                                       ('/blog/recent', RecentEntries), #fetch a list of recent entries
                                       ('/blog/cloud', TagCloud),
                                       ('/blog/tags', EntryTags),
-				      ('/blog/blogroll', BlogRoll),
                                       ('/blog/next', NextEntry), #fetch a hyperlink to the next entry key from a given entry
                                       ('/blog/admin', AdminFooter),
                                       ('/blog/deleterender', DeleteRender),
                                       ('/blog/ajaxviewcallback', AjaxViewCallback),
+									  ('/blog/filter.*', FilterPage),
                                       ('/blog.*', LatestEntry)
                                       ],
                                      debug=True)

@@ -59,6 +59,7 @@ class Atom(webapp.RequestHandler):
         feed += '<title>' + str(xmlise(post.title)) + '</title>'
         feed += '<link href="http://martindevans.appspot.com/blog/perma?' + str(post.key()) + '" />'
         feed += '<id>http://martindevans.appspot.com/blog/perma?' + str(post.key()) + '</id>'
+        feed += '<content type="html">' + str(post.content) + '</content>'
         feed += '<updated>' + str(post.date.strftime("%Y-%m-%dT%H:%M:%SZ")) + '</updated>'
         feed += '</entry>'
       feed += '</feed>'

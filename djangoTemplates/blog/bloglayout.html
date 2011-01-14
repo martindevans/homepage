@@ -22,7 +22,7 @@
 		<div class="page">
 			<div class="innerbanner">
 				<a href="/blog/latest">
-					<div id="bigtitle">	
+					<div id="bigtitle">
 						Blog 2.1
 					</div>
 				</a>
@@ -62,7 +62,13 @@
 					</script>
 					<div class="blogpost">
 						<div id="posttitle">
-							<a href="/blog/perma?{{ entry.key }}">{{ entry.title }}</a>
+							{% if entry.key %}
+								<a href="/blog/perma?{{ entry.key }}">
+							{% endif %}
+							{{ entry.title }}
+							{% if entry.key %}
+								</a>
+							{% endif %}
 							<div id="postdate">
 								{{ entry.date|date:"D d M Y" }}
 							</div>
@@ -96,6 +102,7 @@
 						<div class="blogrollentry"><a href="http://blogs.msdn.com/shawnhar/">Shawn Hargreaves</a></div>
 						<div class="blogrollentry"><a href="http://www.introversion.co.uk/blog/index.php">Introversion Software</a></div>
 						<div class="blogrollentry"><a href="http://www.catalinzima.com/">Catalin Zima</a></div>
+						<div class="blogrollentry"><a href="http://andimiller.net/">Andi Miller</a></div>
 						<div class="blogrollentry"><a href="http://digierr.spaces.live.com/">Digital Error</a></div>
 						<div class="blogrollentry"><a href="http://blogs.msdn.com/xna/">XNA Team Blog</a></div>
 						<div class="blogrollentry"><a href="http://nickgravelyn.com/">Nick Gravelyn</a></div>

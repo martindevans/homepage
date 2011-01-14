@@ -154,10 +154,11 @@ function DrawTagCloud()
 	if (tagCloudLimit)
 	{
 		length = Math.min(tagCloud.length, tagCloudLimitSize);
-	}
+	}	
 	for (var i = 0; i < length; i++)
 	{
-		temp[i] = tagCloud[i][0] + "(" + tagCloud[i][1] + ")";
+		var keyword = tagCloud[i][0]
+		temp[i] = "<a href=\"filter?tag=" + keyword + "\">" + keyword + "(" + tagCloud[i][1] + ")</a>";
 	}
 	if (tagCloud.length > tagCloudLimitSize)
 	{
