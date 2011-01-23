@@ -19,7 +19,7 @@ class Rss(webapp.RequestHandler):
       feed += '<link>http://martindevans.appspot.com/blog/latest</link>'
       feed += '<description>A blog on programming, game development, parallelism, distributed systems and other technical stuff</description>'
       feed += '<language>en-gb</language>'
-      feed += '<copyright>Copyright 2008, Martin Evans (martindevans@gmail.com)</copyright>'
+      feed += '<copyright>Copyright 2010, Martin Evans (martindevans@gmail.com)</copyright>'
       feed += '<managingEditor>martindevans@gmail.com (Martin Evans)</managingEditor>'
       feed += '<webMaster>martindevans@gmail.com (Martin Evans)</webMaster>'
       feed += '<docs>http://cyber.law.harvard.edu/rss/rss.html</docs>'
@@ -39,6 +39,8 @@ class Rss(webapp.RequestHandler):
 
 class Atom(webapp.RequestHandler):
   def get(self):
+    memcache.set("atom_feed", None)
+    
     self.response.headers['Content-Type'] = 'application/xml'
     feed = memcache.get("atom_feed")
     if (feed is None):
@@ -56,10 +58,10 @@ class Atom(webapp.RequestHandler):
       feed += '<author><name>Martin Evans</name><email>martindevans@gmail.com</email></author>'
       for post in posts:
         feed += '<entry>'
-        feed += '<title>' + str(xmlise(post.title)) + '</title>'
+        feed += '<title>' + str(xmlise(post.title.encode())) + '</title>'
         feed += '<link href="http://martindevans.appspot.com/blog/perma?' + str(post.key()) + '" />'
         feed += '<id>http://martindevans.appspot.com/blog/perma?' + str(post.key()) + '</id>'
-        feed += '<content type="html">' + str(post.content) + '</content>'
+        feed += '<content type="html">' + str(xmlise(post.content).encode()) + '</content>'
         feed += '<updated>' + str(post.date.strftime("%Y-%m-%dT%H:%M:%SZ")) + '</updated>'
         feed += '</entry>'
       feed += '</feed>'
