@@ -6,7 +6,7 @@ api_version: 1
 handlers:
 - url: /blog/feed.*
   script: blog/feed.py
-
+  
 - url: /blog.*
   script: blog/service.py
 
