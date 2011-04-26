@@ -18,6 +18,9 @@ handlers:
   script: adminPanel.py
   login: admin
 
+- url: /eve.*
+  script: eveapi.py
+  
 - url: /file.*
   script: blobManager.py
 
@@ -36,9 +39,6 @@ handlers:
 
 - url: /pages
   static_dir: pages
-
-- url: /resume
-  script: resume.py
   
 - url: /restricted
   static_dir: restricted
