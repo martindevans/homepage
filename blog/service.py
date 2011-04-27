@@ -20,8 +20,26 @@ class LatestEntry(webapp.RequestHandler):
         self.response.out.write(GetHtml(GetLatestPost()))
 
 class SpecificEntry(webapp.RequestHandler):
+    def extractKeyString(self):
+        try:
+            k = self.request.get("key")
+            if (k is ''):
+                k = self.request.query_string
+            k = db.Key(k)
+            return str(k)
+        except db.BadKeyError:
+            pass
+
+        try:
+            ampIndex = self.request.query_string.find('&')
+            k = db.Key(self.request.query_string[0:ampIndex])
+            return str(k)
+        except db.BadKeyError, ValueError:
+            pass
+    
     def get(self):
-        self.response.out.write(GetHtml(GetEntry(self.request.query_string)))
+        keyString = self.extractKeyString()
+        self.response.out.write(GetHtml(GetEntry(keyString)))
 
 class SubmitComment(webapp.RequestHandler):
     def post(self):
