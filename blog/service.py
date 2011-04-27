@@ -191,10 +191,10 @@ class AjaxViewCallback(webapp.RequestHandler):
 
 def GetHtml(blogpost):
     #DEBUGGING!
-    #memcache.flush_all()
-    #renders = blog.classes.BlogRender.all()
-    #for r in renders:
-    #    r.delete()
+    memcache.flush_all()
+    renders = blog.classes.BlogRender.all()
+    for r in renders:
+        r.delete()
 
     keystring = str(blogpost.key()) + "fullhtmlview"
 
