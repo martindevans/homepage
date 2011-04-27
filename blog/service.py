@@ -58,10 +58,13 @@ class FilterPage(webapp.RequestHandler):
 					results.append(l.Post)
 		results.sort(key=lambda post: post.date)
 		results.reverse()
+
+                def getTagHyperlink(tagTitle):
+                    return "<a href=\"/blog/filter?tag=" + tagTitle + "\">" + tagTitle + "</a>"
 	
 		def makeDescriptiveString(blogPost):
 			links = classes.BlogTagLink.all().filter("Post = ", blogPost)
-			return "<a href=perma?" + str(blogPost.key()) + ">" + blogPost.title + "</a><br />" + blogPost.date.strftime("%d %b %Y") + "<br />Tagged : " + ", ".join([l.Tag.title for l in links])
+			return "<a href=perma?" + str(blogPost.key()) + ">" + blogPost.title + "</a><br />" + blogPost.date.strftime("%d %b %Y") + "<br />Tagged : " + ", ".join([getTagHyperlink(l.Tag.title) for l in links])
 	
 		result = {}
 		result["title"] = str(len(results)) + " Entries Tagged \"" + tag.title + "\""
@@ -113,7 +116,7 @@ class NextEntry(webapp.RequestHandler):
 class TagCloud(webapp.RequestHandler):
     def get(self):
         #DEBUGGING!
-        #memcache.flush_all()
+        memcache.flush_all()
         
         cloud = memcache.get("tagcloud")
         if (cloud is None):
@@ -137,7 +140,7 @@ class EntryTags(webapp.RequestHandler):
 			key = db.Key(self.request.query_string)
 			tags = classes.BlogTagLink.all()
 			tags.filter("Post = ", db.get(key))
-			words = ["<a href=\"filter?tag=" + t.Tag.title + "\">" + t.Tag.title + "</a>" for t in tags]
+			words = ["<a href=\"/blog/filter?tag=" + t.Tag.title + "\">" + t.Tag.title + "</a>" for t in tags]
 			self.response.out.write(', '.join(words))
 		except db.BadKeyError:
 			pass
@@ -191,10 +194,10 @@ class AjaxViewCallback(webapp.RequestHandler):
 
 def GetHtml(blogpost):
     #DEBUGGING!
-    #memcache.flush_all()
-    #renders = blog.classes.BlogRender.all()
-    #for r in renders:
-    #    r.delete()
+    memcache.flush_all()
+    renders = blog.classes.BlogRender.all()
+    for r in renders:
+        r.delete()
 
     keystring = str(blogpost.key()) + "fullhtmlview"
 
@@ -303,7 +306,7 @@ application = webapp.WSGIApplication(
                                       ('/blog/admin', AdminFooter),
                                       ('/blog/deleterender', DeleteRender),
                                       ('/blog/ajaxviewcallback', AjaxViewCallback),
-									  ('/blog/filter.*', FilterPage),
+				      ('/blog/filter.*', FilterPage),
                                       ('/blog.*', LatestEntry)
                                       ],
                                      debug=True)

@@ -158,7 +158,7 @@ function DrawTagCloud()
 	for (var i = 0; i < length; i++)
 	{
 		var keyword = tagCloud[i][0]
-		temp[i] = "<a href=\"filter?tag=" + keyword + "\">" + keyword + "(" + tagCloud[i][1] + ")</a>";
+		temp[i] = "<a href=\"/blog/filter?tag=" + keyword + "\">" + keyword + "(" + tagCloud[i][1] + ")</a>";
 	}
 	if (tagCloud.length > tagCloudLimitSize)
 	{
