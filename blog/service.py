@@ -116,7 +116,7 @@ class NextEntry(webapp.RequestHandler):
 class TagCloud(webapp.RequestHandler):
     def get(self):
         #DEBUGGING!
-        memcache.flush_all()
+        #memcache.flush_all()
         
         cloud = memcache.get("tagcloud")
         if (cloud is None):
@@ -194,10 +194,10 @@ class AjaxViewCallback(webapp.RequestHandler):
 
 def GetHtml(blogpost):
     #DEBUGGING!
-    memcache.flush_all()
-    renders = blog.classes.BlogRender.all()
-    for r in renders:
-        r.delete()
+    #memcache.flush_all()
+    #renders = blog.classes.BlogRender.all()
+    #for r in renders:
+    #    r.delete()
 
     keystring = str(blogpost.key()) + "fullhtmlview"
 
