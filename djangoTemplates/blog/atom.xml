@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<id>http://martindevans.appspot.com/blog/feed/atom.xml</id>
+	<title>Blog 2.0</title>
+	<subtitle>A blog on programming, game development, parallelism, distributed systems and other technical stuff</subtitle>
+	<link href="http://martindevans.appspot.com/blog/latest" />
+	<link href="http://martindevans.appspot.com/blog/feed/atom.xml" rel="self" type="application/rss+xml" />
+	<updated>{{ latest.date|date:"c" }}</updated>
+	<author><name>Martin Evans</name><email>martindevans@gmail.com</email></author>
+		
+	{% for post in posts %}
+		<entry>
+			<title>{{ post.title }}</title>
+			<link href="http://martindevans.appspot.com/blog/perma?key={{ post.key }}" />
+			<id>{{ post.key }}</id>
+			<updated>{{ post.date|date:"Y-m-d" }}</updated>
+			<!-- <content type="text">{{ post.content|linebreaks }}</content> -->
+		</entry>
+	{% endfor %}
+
+</feed>

@@ -1,9 +1,13 @@
 import blog
+from blog import service
+
+import os
 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.api import memcache
 from google.appengine.ext import db
+from google.appengine.ext.webapp import template
 
 class Rss(webapp.RequestHandler):
   def get(self):
@@ -46,25 +50,15 @@ class Atom(webapp.RequestHandler):
     if (feed is None):
       posts = blog.classes.BlogPost.all()
       posts.order('-date')
-      feed = ''
-      feed += '<?xml version="1.0"?>'
-      feed += '<feed xmlns="http://www.w3.org/2005/Atom">'
-      feed += '<id>http://martindevans.appspot.com/blog/feed/atom.xml</id>'
-      feed += '<title>Blog 2.0</title>'
-      feed += '<subtitle>A blog on programming, game development, parallelism, distributed systems and other technical stuff</subtitle>'
-      feed += '<link href="http://martindevans.appspot.com/blog/latest" />'
-      feed += '<link href="http://martindevans.appspot.com/blog/feed/atom.xml" rel="self" type="application/rss+xml" />'
-      feed += '<updated>' + str(blog.classes.BlogPost.all().order("-date").get().date.strftime("%Y-%m-%dT%H:%M:%SZ")) +'</updated>'
-      feed += '<author><name>Martin Evans</name><email>martindevans@gmail.com</email></author>'
-      for post in posts:
-        feed += '<entry>'
-        feed += '<title>' + str(xmlise(post.title.encode())) + '</title>'
-        feed += '<link href="http://martindevans.appspot.com/blog/perma?' + str(post.key()) + '" />'
-        feed += '<id>http://martindevans.appspot.com/blog/perma?' + str(post.key()) + '</id>'
-        feed += '<content type="html">' + str(xmlise(post.content).encode()) + '</content>'
-        feed += '<updated>' + str(post.date.strftime("%Y-%m-%dT%H:%M:%SZ")) + '</updated>'
-        feed += '</entry>'
-      feed += '</feed>'
+
+      template_values = {
+        "latest":service.GetLatestPost(),
+        "posts":blog.classes.BlogPost.gql("ORDER BY date DESC")
+      }
+
+      path = os.path.join(os.path.dirname(__file__), '../djangoTemplates/blog/atom.xml')
+      feed = template.render(path, template_values).decode("utf-8")
+      
       memcache.set("atom_feed", feed, 60 * 60 * 24)
       
     self.response.out.write(feed)
